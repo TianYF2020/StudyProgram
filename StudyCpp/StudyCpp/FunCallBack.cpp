@@ -42,7 +42,7 @@ int testCallBack()
     std::function<void(int)> testcallback = std::bind(&MyBindClass::memberCallback, &bindobj, std::placeholders::_1);
     // 调用processData，传入绑定的成员函数作为回调
     bindobj.processData(5, 7, testcallback);
-
+    std::cout << std::endl;
     return 0;
 
 }

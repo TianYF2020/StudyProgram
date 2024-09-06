@@ -1,6 +1,6 @@
 ﻿#include "VarParamClass.h"
 
-// 方案1 1
+// 方案1 使用省略号（Ellipsis）
 void VarParamClass::PrintNumbers(int count, ...)
 {
     cout << "This parent printf:";
@@ -17,7 +17,7 @@ void VarParamClass::PrintNumbers(int count, ...)
     std::cout << std::endl;
 }
 
-
+//2. 使用模板（Template）
 void C_TestVarParam::PrintNumbers(int count, ...)
 {
     va_list args;
@@ -29,6 +29,5 @@ void C_TestVarParam::PrintNumbers(int count, ...)
     }
     va_end(args);
     std::cout << std::endl;
-
 }
 

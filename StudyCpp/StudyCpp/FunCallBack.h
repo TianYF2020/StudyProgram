@@ -50,7 +50,7 @@ class MyBindClass {
 public:
     // 普通成员函数作为回调函数
     void memberCallback(int result) {
-        std::cout << "成员回调函数被调用，结果是: " << result << std::endl;
+        std::cout << "rember call back:result is : " << result << std::endl;
     }
 
     // 处理数据，并调用回调函数
