@@ -43,12 +43,18 @@
     <ClCompile Include="VarParamClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FunCallBack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VarParamClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TempLateClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FunCallBack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -93,6 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FunCallBack.cpp" />
     <ClCompile Include="VarParamClass.cpp" />
     <QtRcc Include="StudyC.qrc" />
     <QtUic Include="StudyC.ui" />
@@ -101,6 +102,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FunCallBack.h" />
     <ClInclude Include="TempLateClass.h" />
     <ClInclude Include="VarParamClass.h" />
   </ItemGroup>

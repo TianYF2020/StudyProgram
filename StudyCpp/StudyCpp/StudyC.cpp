@@ -1,11 +1,13 @@
 #include "StudyC.h"
 #include "VarParamClass.h"
 #include "TempLateClass.h"
+#include "FunCallBack.h"
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
     TestC();
+    testCallBack();
 }
 
 StudyC::~StudyC()
@@ -15,6 +17,7 @@ StudyC::~StudyC()
 
 void StudyC::TestC()
 {
+ 
     C_TestVarParam temp;
     temp.PrintNumbers(1,2,3,4,6);
 
