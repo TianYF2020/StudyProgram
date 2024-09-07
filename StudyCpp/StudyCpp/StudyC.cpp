@@ -6,11 +6,17 @@
 #include "NamespaceClass.h"
 #include "VariantClass.h"
 #include "OperatorClass.h"
+#include "ThreadClass.h"
+#include "CompileClass.h"
+
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    TestC();
+    //TestC();
+    TestThreadFuntion();
+
+    //TestCompileProperty();
 }
 
 StudyC::~StudyC()
@@ -46,4 +52,19 @@ void StudyC::TestC()
 
     //测试运算符
     testOperator();
+}
+
+
+void StudyC::TestThreadFuntion()
+{
+    cout << "------Test thread function" << endl;
+    TestThreadFunction();
+    cout << "------Test thread class function" << endl;
+    TestThreadClassFunction();
+}
+
+
+void StudyC::TestCompileProperty()
+{
+    testCompile();
 }

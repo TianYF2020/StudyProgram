@@ -11,6 +11,8 @@ public:
     StudyC(QWidget *parent = nullptr);
     ~StudyC();
     void TestC();
+    void TestThreadFuntion();
+    void TestCompileProperty();
 private:
     Ui::StudyCClass ui;
 };

@@ -98,10 +98,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CompileClass.cpp" />
     <ClCompile Include="FunCallBack.cpp" />
     <ClCompile Include="NameSpaceClass.cpp" />
     <ClCompile Include="OperatorClass.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
+    <ClCompile Include="ThreadClass.cpp" />
     <ClCompile Include="VariantClass.cpp" />
     <ClCompile Include="VarParamClass.cpp" />
     <QtRcc Include="StudyC.qrc" />
@@ -111,11 +113,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompileClass.h" />
     <ClInclude Include="FunCallBack.h" />
     <ClInclude Include="NameSpaceClass.h" />
     <ClInclude Include="OperatorClass.h" />
     <ClInclude Include="SmartPointer.h" />
     <ClInclude Include="TempLateClass.h" />
+    <ClInclude Include="ThreadClass.h" />
     <ClInclude Include="VariantClass.h" />
     <ClInclude Include="VarParamClass.h" />
   </ItemGroup>
