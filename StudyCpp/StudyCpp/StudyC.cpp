@@ -8,6 +8,7 @@
 #include "OperatorClass.h"
 #include "ThreadClass.h"
 #include "CompileClass.h"
+#include "ThreadAsync.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
@@ -52,6 +53,8 @@ void StudyC::TestC()
 
     //测试运算符
     testOperator();
+
+ 
 }
 
 
@@ -61,6 +64,8 @@ void StudyC::TestThreadFuntion()
     TestThreadFunction();
     cout << "------Test thread class function" << endl;
     TestThreadClassFunction();
+    cout << "\n------Test async thread function" << endl;
+    testThreadAsync();
 }
 
 
