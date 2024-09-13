@@ -1,26 +1,26 @@
-#include "ThreadAsync.h"
+ï»¿#include "ThreadAsync.h"
 #include <iostream>
 
-// Ò»¸öºÄÊ±µÄº¯Êý
+// ä¸€ä¸ªè€—æ—¶çš„å‡½æ•°
 int longTask(int num)
 {
     std::cout << __FUNCTION__ << ":start run thread" << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(5)); // Ä£ÄâºÄÊ±ÈÎÎñ
+    std::this_thread::sleep_for(std::chrono::seconds(5)); // æ¨¡æ‹Ÿè€—æ—¶ä»»åŠ¡
     std::cout << __FUNCTION__ << ":end thread" << std::endl;
     return num * 2;
 }
 
 int testThreadAsync()
 {
-    // Ê¹ÓÃstd::asyncÆô¶¯Òì²½ÈÎÎñ
+    // ä½¿ç”¨std::asyncå¯åŠ¨å¼‚æ­¥ä»»åŠ¡
     std::future<int> result = std::async(std::launch::async, longTask, 10);
     std::cout << __FILE__ << std::endl;
-    // Äã¿ÉÒÔÔÚÕâÀï×öÆäËûµÄÊÂÇé
+    // ä½ å¯ä»¥åœ¨è¿™é‡Œåšå…¶ä»–çš„äº‹æƒ…
     std::cout << __FUNCTION__ << ":Deal other ..." << std::endl;
-    std::this_thread::sleep_for(std::chrono::seconds(1)); // Ä£ÄâºÄÊ±ÈÎÎñ
-    // »ñÈ¡Òì²½ÈÎÎñµÄ½á¹û
+    std::this_thread::sleep_for(std::chrono::seconds(1)); // æ¨¡æ‹Ÿè€—æ—¶ä»»åŠ¡
+    // èŽ·å–å¼‚æ­¥ä»»åŠ¡çš„ç»“æžœ
     std::cout << __FUNCTION__ << ":Wiat result" << std::endl;
-    int value = result.get();  // ×èÈû£¬Ö±µ½ÈÎÎñÍê³É
+    int value = result.get();  // é˜»å¡žï¼Œç›´åˆ°ä»»åŠ¡å®Œæˆ
 
     std::cout << __FUNCTION__ << ":get Result: " << value << std::endl;
 
