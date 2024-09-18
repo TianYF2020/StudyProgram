@@ -11,8 +11,10 @@ public:
     StudyC(QWidget *parent = nullptr);
     ~StudyC();
     void TestC();
+    void TestJson();
     void TestThreadFuntion();
     void TestCompileProperty();
+    void TestConstructor();
 private:
     Ui::StudyCClass ui;
 };

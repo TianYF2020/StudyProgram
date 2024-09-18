@@ -29,7 +29,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -67,7 +67,22 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
@@ -99,7 +114,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CompileClass.cpp" />
+    <ClCompile Include="ConstructorClass.cpp" />
+    <ClCompile Include="CThreadFun.cpp" />
     <ClCompile Include="FunCallBack.cpp" />
+    <ClCompile Include="JsonClass.cpp" />
     <ClCompile Include="NameSpaceClass.cpp" />
     <ClCompile Include="OperatorClass.cpp" />
     <ClCompile Include="SmartPointer.cpp" />
@@ -115,7 +133,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CompileClass.h" />
+    <ClInclude Include="ConstructorClass.h" />
+    <ClInclude Include="CThreadFun.h" />
     <ClInclude Include="FunCallBack.h" />
+    <ClInclude Include="JsonClass.h" />
     <ClInclude Include="NameSpaceClass.h" />
     <ClInclude Include="OperatorClass.h" />
     <ClInclude Include="SmartPointer.h" />

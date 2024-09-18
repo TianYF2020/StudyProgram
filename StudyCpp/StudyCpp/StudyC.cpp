@@ -9,15 +9,22 @@
 #include "ThreadClass.h"
 #include "CompileClass.h"
 #include "ThreadAsync.h"
+#include "ConstructorClass.h"
+#include "JsonClass.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
     //TestC();
-    TestThreadFuntion();
+    //TestThreadFuntion();
 
     //TestCompileProperty();
+
+    TestJson();
+
+    //测试构造
+    TestConstructor();
 }
 
 StudyC::~StudyC()
@@ -72,4 +79,17 @@ void StudyC::TestThreadFuntion()
 void StudyC::TestCompileProperty()
 {
     testCompile();
+}
+
+void StudyC::TestJson()
+{
+    JsonClass testJson;
+    testJson.writeJsonFileTest("test.json");
+    testJson.readJsonFileTest("test.json");
+}
+
+
+void StudyC::TestConstructor()
+{
+    testConstructor();
 }
