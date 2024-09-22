@@ -11,20 +11,27 @@
 #include "ThreadAsync.h"
 #include "ConstructorClass.h"
 #include "JsonClass.h"
+#include "LambdaClass.h"
+#include "MagicEnum.h"
+#include "CommonTest.h"
+#include "STLFuntion.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
-    //TestC();
+    // TestC();
+
     //TestThreadFuntion();
 
     //TestCompileProperty();
 
-    TestJson();
+    // TestJson();
 
     //测试构造
-    TestConstructor();
+    // TestConstructor();
+
+    TestSTL();
 }
 
 StudyC::~StudyC()
@@ -61,7 +68,14 @@ void StudyC::TestC()
     //测试运算符
     testOperator();
 
- 
+    //测试lambda函数
+    LambdaClass lamb;
+    lamb.testLambdaFuntion();
+
+    //测试枚举转字符和索引  会增加代码行数
+    testMagicEnum();
+
+
 }
 
 
@@ -92,4 +106,10 @@ void StudyC::TestJson()
 void StudyC::TestConstructor()
 {
     testConstructor();
+}
+
+
+void StudyC::TestSTL()
+{
+    testPair();
 }

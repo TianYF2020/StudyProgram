@@ -67,7 +67,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -76,7 +76,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -113,38 +113,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CompileClass.cpp" />
-    <ClCompile Include="ConstructorClass.cpp" />
-    <ClCompile Include="CThreadFun.cpp" />
-    <ClCompile Include="FunCallBack.cpp" />
-    <ClCompile Include="JsonClass.cpp" />
-    <ClCompile Include="NameSpaceClass.cpp" />
-    <ClCompile Include="OperatorClass.cpp" />
-    <ClCompile Include="SmartPointer.cpp" />
-    <ClCompile Include="ThreadAsync.cpp" />
-    <ClCompile Include="ThreadClass.cpp" />
-    <ClCompile Include="VariantClass.cpp" />
-    <ClCompile Include="VarParamClass.cpp" />
-    <QtRcc Include="StudyC.qrc" />
-    <QtUic Include="StudyC.ui" />
-    <QtMoc Include="StudyC.h" />
-    <ClCompile Include="StudyC.cpp" />
-    <ClCompile Include="main.cpp" />
+    <QtMoc Include="include\StudyC.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CompileClass.h" />
-    <ClInclude Include="ConstructorClass.h" />
-    <ClInclude Include="CThreadFun.h" />
-    <ClInclude Include="FunCallBack.h" />
-    <ClInclude Include="JsonClass.h" />
-    <ClInclude Include="NameSpaceClass.h" />
-    <ClInclude Include="OperatorClass.h" />
-    <ClInclude Include="SmartPointer.h" />
-    <ClInclude Include="TempLateClass.h" />
-    <ClInclude Include="ThreadAsync.h" />
-    <ClInclude Include="ThreadClass.h" />
-    <ClInclude Include="VariantClass.h" />
-    <ClInclude Include="VarParamClass.h" />
+    <ClInclude Include="include\funtion\CompileClass.h" />
+    <ClInclude Include="include\funtion\ConstructorClass.h" />
+    <ClInclude Include="include\funtion\CThreadFun.h" />
+    <ClInclude Include="include\funtion\FunCallBack.h" />
+    <ClInclude Include="include\funtion\JsonClass.h" />
+    <ClInclude Include="include\funtion\LambdaClass.h" />
+    <ClInclude Include="include\funtion\NameSpaceClass.h" />
+    <ClInclude Include="include\funtion\OperatorClass.h" />
+    <ClInclude Include="include\funtion\SmartPointer.h" />
+    <ClInclude Include="include\funtion\TempLateClass.h" />
+    <ClInclude Include="include\funtion\ThreadAsync.h" />
+    <ClInclude Include="include\funtion\ThreadClass.h" />
+    <ClInclude Include="include\funtion\VariantClass.h" />
+    <ClInclude Include="include\funtion\VarParamClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\function\CompileClass.cpp" />
+    <ClCompile Include="src\function\ConstructorClass.cpp" />
+    <ClCompile Include="src\function\CThreadFun.cpp" />
+    <ClCompile Include="src\function\FunCallBack.cpp" />
+    <ClCompile Include="src\function\JsonClass.cpp" />
+    <ClCompile Include="src\function\LambdaClass.cpp" />
+    <ClCompile Include="src\function\NameSpaceClass.cpp" />
+    <ClCompile Include="src\function\OperatorClass.cpp" />
+    <ClCompile Include="src\function\SmartPointer.cpp" />
+    <ClCompile Include="src\function\TempLateClass.cpp" />
+    <ClCompile Include="src\function\ThreadAsync.cpp" />
+    <ClCompile Include="src\function\ThreadClass.cpp" />
+    <ClCompile Include="src\function\VariantClass.cpp" />
+    <ClCompile Include="src\function\VarParamClass.cpp" />
+    <ClCompile Include="src\StudyC.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="ui\StudyC.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="source\StudyC.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

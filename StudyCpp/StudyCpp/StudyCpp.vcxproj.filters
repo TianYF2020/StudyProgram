@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Form Files">
       <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
       <Extensions>ui</Extensions>
@@ -21,101 +17,124 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Header Files\function">
+      <UniqueIdentifier>{8e7f4c9a-cb74-4776-a069-fd3cf3e7852f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\funciton">
+      <UniqueIdentifier>{3000e178-39e9-4546-a9ef-05bcbd1bf827}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="StudyC.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
-    <QtUic Include="StudyC.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtMoc Include="StudyC.h">
+    <QtMoc Include="include\StudyC.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClCompile Include="StudyC.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\funtion\CompileClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\ConstructorClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\CThreadFun.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\FunCallBack.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\JsonClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\LambdaClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\NameSpaceClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\OperatorClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\SmartPointer.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\TempLateClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\ThreadAsync.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\ThreadClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\VariantClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+    <ClInclude Include="include\funtion\VarParamClass.h">
+      <Filter>Header Files\function</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\function\CompileClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\ConstructorClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\CThreadFun.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\FunCallBack.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\JsonClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\LambdaClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\NameSpaceClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\OperatorClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\SmartPointer.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\TempLateClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\ThreadAsync.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\ThreadClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\VariantClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\VarParamClass.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StudyC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VarParamClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FunCallBack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SmartPointer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="NameSpaceClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VariantClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OperatorClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CompileClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ThreadAsync.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CThreadFun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JsonClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstructorClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VarParamClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TempLateClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FunCallBack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SmartPointer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NameSpaceClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VariantClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OperatorClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CompileClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadAsync.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CThreadFun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="JsonClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstructorClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <QtUic Include="ui\StudyC.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="source\StudyC.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

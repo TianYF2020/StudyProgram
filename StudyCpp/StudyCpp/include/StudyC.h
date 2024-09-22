@@ -15,6 +15,8 @@ public:
     void TestThreadFuntion();
     void TestCompileProperty();
     void TestConstructor();
+
+    void TestSTL();
 private:
     Ui::StudyCClass ui;
 };
