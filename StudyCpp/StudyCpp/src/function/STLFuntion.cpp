@@ -54,6 +54,41 @@ struct Person {
 //std::vector: 动态数组，大小可以在运行时根据需要自动扩展，重新分配更大的内存空间（通常是当前容量的两倍）。
 int testVector()
 {
+
+// 迭代器函数：同array
+// 增加数据
+// void push_back(const T& x):向量尾部增加一个元素X
+// iterator insert(iterator it,const T& x):向量中迭代器指向元素前增加一个元素x
+// iterator insert(iterator it,int n,const T& x):向量中迭代器指向元素前增加n个相同的元素x
+// iterator insert(iterator it,const_iterator first,const_iterator last):向量中迭代器指向元素前插入另一个相同类型向量的[first,last)间的数据
+// 删除数据
+// iterator erase(iterator it):删除向量中迭代器指向元素
+// iterator erase(iterator first,iterator last):删除向量中[first,last)中元素
+// void pop_back():删除向量中最后一个元素
+// void clear():清空向量中所有元素
+// 迭代器
+// reference at(int pos):返回pos位置元素的引用
+// reference front():返回首元素的引用
+// reference back():返回尾元素的引用
+// iterator begin():返回向量头指针，指向第一个元素
+// iterator end():返回向量尾指针，指向向量最后一个元素的下一个位置
+// reverse_iterator rbegin():反向迭代器，指向最后一个元素
+// reverse_iterator rend():反向迭代器，指向第一个元素之前的位置
+// 其他函数
+// size() 返回实际元素个数
+// max_size() 返回元素个数的最大值。这通常是一个很大的值，一般是 
+// ，所以我们很少会用到这个函数。
+// resize() 改变实际元素个数
+// capacity() 返回当前容量
+// reserve() 改变容器容量
+// shrink_to_fit() 将内存减少到等于当前元素实际所使用的大小。
+// at() 使用经过边界检查的索引访问元素，同array。
+// operator[ ] 重载了 [ ] 运算符，可以向访问数组中元素那样，通过下标即可访问甚至修改 vector 容器中的元素
+// front(), back() 分别是第一个和最后一个元素的引用
+// data() 返回指向容器中第一个元素的指针。
+// emplace() 在指定的位置直接生成一个元素。
+// emplace_back() 在序列尾部生成一个元素。
+
     using namespace std;
     //构造
     std::vector<int> vec;              // 空 vector
@@ -65,6 +100,13 @@ int testVector()
 
     vector<int> vec6;
     vec6.assign(vec4.begin(), vec4.end());
+
+    // 二维构造
+    // 初始化二维 10x10 的0数组
+    vector<vector<int>> nums(10);
+    vector<vector<int>> nums1(10, vector<int>());
+    vector<vector<int>> nums2(10, vector<int>(10, 0));
+   
 
     // 使用自定义的比较器进行排序1
     struct CustomCompare {
@@ -132,7 +174,19 @@ int testVector()
     {
         cout << num << " "; // 输出每个元素 
     }
-    
+
+    // 两种性能上没有区别只是写着简单了，代码明确
+    // c++11 新方法，只能左值
+    for(auto &i: vec)
+    {
+        std::cout << i << std::endl;
+    }
+    // T&& 万能引用，左值，右值引用都行
+    for(auto &&i: vec)
+    {
+        std::cout << i << std::endl;
+    }
+
     //交换
     std::swap(vec, vec2); // 交换vec1和vec2的内容
     
@@ -146,14 +200,54 @@ int testVector()
     return 0;
 }
 
-
+#include <numeric>
 #include "array"
 // std::array: 性能非常高，因为其大小是固定的，所有数据都在栈上分配,一旦创建，不能改变其大小。
 int testArray()
 {
     using namespace std;
+// 迭代器函数：begin(),end(),cbegin(),cend(),rbegin(),rend(),crbegin(),crend()。 其中r是reverse，的是反序输出 ，c代表const，表示值不能修改 ***** 
+// size() == max_size()返回容器中当前元素的数量，其值始终等于初始化 array 类的第二个模板参数 N。
+// empty()判断容器是否为空，和通过size()==0判断条件功能相同，但效率更高。
+// at() 返回容器中 n 位置处元素的引用，该函数自动检查 n 是否在有效的范围内，如果不是则抛出 out_of_range 异常。用at()访问相比下标方式更安全，但是因为多了安全检查性能更低。
+// front(),back() 返回容器中第一个元素和最后一个元素的直接引用，该函数不适用于空的 array 容器。
+// data() 返回一个指向容器首个元素的指针。利用该指针，可实现复制容器中所有元素等类似功能(values.data() == & values[0] == values.begin())。
+// fill(val) 将 val 这个值赋值给容器中的每个元素。
+// array1.swap(array2) 交换 array1 和 array2 容器中的所有元素，但前提是它们具有相同的长度和类型。
+    
+    //构造
+    // vector():创建一个空vector
+    // vector(int nSize):创建一个vector,元素个数为nSize
+    // vector(int nSize,const t& t):创建一个vector，元素个数为nSize,且值均为t
+    // vector(const vector&):复制构造函数
+    // vector(begin,end):复制[begin,end)区间内另一个数组的元素到vector中
     std::array<int, 5> arr1 = {1, 2, 3, 4, 5};  // 初始化 5 个元素
-    std::array<int, 5> arr2 = {};               // 默认初始化为 0
+    std::array<double, 10> values {0.5,1.0,1.5,2.0};
+    //由此，就创建好了一个名为 values 的 array 容器，其包含 10 个浮点型元素
+    std::array<double, 10> values1;
+    std::cout << std::get<3>(values1) << std::endl;
+
+
+    double total = 0;
+    for(size_t i = 0 ; i < values.size() ; ++i)
+    {
+        total += values[i];
+    }
+
+    double total1 = 0;
+    for(auto& value : values)
+        total1 += value;
+    
+
+    for (auto i = values.begin(); i < values.end(); i++) 
+    {
+	    cout << *i << " ";
+    }
+
+    //执行累加操作accumulate
+    double result = std::accumulate(values.begin(), values.end(), 0.0);
+    int result1 = std::accumulate(arr1.begin(), arr1.end(), 0.);
+
     return 0;
 }
 
@@ -297,6 +391,57 @@ int testPriority_queue()
 
     // 输出队列的最小元素
     std::cout << "最小元素: " << p.top() << std::endl;  // 输出 10
+
+
+   
+    //升序队列 greater 大的靠前 ，less 小的靠前， 可用比较常见的类型char int double
+    priority_queue <int, vector<int>, greater<int> > q1;
+    //降序队列
+    priority_queue <int, vector<int>, less<int> > q2;
+    // greater<int>, less<int> 是 std 中的仿函数
+
+    //自定义排序
+    typedef pair<int,int> pii;
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    pq.emplace(1, 1);
+
+    auto cmp = [](const pair<int, int> & a, const pair<int, int> & b) {
+        return a.first + a.second > b.first + b.second;
+    };
+    priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq1(cmp);
+
+    pq.emplace(1, 0);
+    pq.emplace(2, 3);
+    pq.emplace(10, -8);
+
+    while(!pq.empty()) {
+        auto [x, y] = pq.top();
+        pq.pop();
+        cout << x << " " << y << endl;
+    }
+    // 1 0
+    // 10 -8
+    // 2 3
+
+    struct Node {
+        int l, r, len;
+        Node(int l, int r, int len) :l(l), r(r), len(len) {}
+
+        // 和 vector sort 相反
+        // less -> 从大到小
+        bool operator<(const Node &b) const {
+            return this->len < b.len;
+        }
+
+        // 和 vector sort 相反
+        // greater -> 从小到大
+        bool operator>(const Node &b) const {
+            return this->len > b.len;
+        }
+    };
+
+    // Node 根据 len 从小到大排
+    priority_queue<Node, vector<Node>, greater<Node>> pq2;
 
     return 0;
 }
@@ -582,3 +727,65 @@ int testMap()
 
 
 
+#include "tuple"
+
+std::tuple<double, char, std::string> get_student(int id)
+{
+    if (id == 0) return std::make_tuple(3.8, 'A', "Lisa Simpson");
+    if (id == 1) return std::make_tuple(2.9, 'C', "Milhouse Van Houten");
+    if (id == 2) return std::make_tuple(1.7, 'D', "Ralph Wiggum");
+    throw std::invalid_argument("id");
+}
+
+int testTuple()
+{
+    // std::tuple 是一个聚合类，它是 C++11 新引入的标准库容器，用来存储多个不同的数据类型。
+    // 它是 C++ 11 新引入的 tuple 类，可以将多个不同的数据类型存储在一个变量中。
+    // tuple 类是非序列式的，不提供随机存取元素的能力，也不提供 size() 等函数。
+    // tuple 类是用逗号分隔的元素列表来定义的，元素可以是任意类型。
+    // tuple 类可以用 std::tie() 函数来解包 tuple 元素，也可以用 std::get<>() 函数来获取 tuple 元素的值。
+    
+    // tie	创建左值引用的一个 tuple ，或解包 tuple 为独立对象  (函数模板)
+    // forward_as_tuple	创建右值引用的 tuple  (函数模板)
+    // tuple_cat	通过连接任意数量的元组来创建一个tuple  (函数模板)
+    // std::get(std::tuple)	tuple 访问指定的元素  (函数模板)
+    // operator== operator!= operator< operator<= operator> operator>=	按字典顺序比较 tuple 中的值  (函数模板)
+    // std::swap(std::tuple)(C++11)	特化 std::swap 算法  (函数模板)
+    
+    using namespace std;
+
+
+    // 定义一个 tuple 并初始化
+    auto tp = make_tuple(12,"name","note");
+    tuple<int, string, double> person(1, "Alice", 3.14);
+    // 使用 get 获取 tuple 中的元素
+    std::cout << std::get<0>(person) << std::endl;  // 输出: 1
+    std::cout << std::get<1>(person) << std::endl;  // 输出: 2.5
+    std::cout << std::get<2>(person) << std::endl;  // 输出: hello
+   //返回值访问
+    double gpa1;
+    char grade1;
+    std::string name1;
+    std::tie(gpa1, grade1, name1) = get_student(1);
+    std::cout << "ID: 1, "<< "GPA: " << gpa1 << ", "<< "grade: " << grade1 << ", "<< "name: " << name1 << '\n';
+
+    // C++17 结构化绑定：
+    auto [ gpa2, grade2, name2 ] = get_student(2);
+    std::cout << "ID: 2, " << "GPA: " << gpa2 << ", " << "grade: " << grade2 << ", " << "name: " << name2 << '\n';
+
+
+    std::tuple<int, double, std::string> t(64, 128.0, "Caroline");  
+    std::tuple<std::string, std::string, int> t2 =  std::make_tuple("Caroline", "Wendy", 1992);  
+    //返回元素个数  
+    size_t num = std::tuple_size<decltype(t)>::value;  
+    std::cout << "num = " << num << std::endl;          //num = 3  
+    //获取第1个值的元素类型  
+    std::tuple_element<1, decltype(t)>::type cnt = std::get<1>(t);  
+    std::cout << "cnt = " << cnt << std::endl;      // 128
+    //比较  
+    std::tuple<int, int> ti(24, 48);  
+    std::tuple<double, double> td(28.0, 56.0);  
+    bool b = (ti < td);  
+    std::cout << "b = " << b << std::endl;   //b = 1  
+    return 0;
+}
