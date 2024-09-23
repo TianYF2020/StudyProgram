@@ -50,8 +50,115 @@ struct Person {
     };
 };
 
+#include "vector"
+//std::vector: 动态数组，大小可以在运行时根据需要自动扩展，重新分配更大的内存空间（通常是当前容量的两倍）。
+int testVector()
+{
+    using namespace std;
+    //构造
+    std::vector<int> vec;              // 空 vector
+    std::vector<int> vec2(3);    // 大小为3的数组
+    std::vector<int> vec3(5, 10);       // 大小为 5，所有元素初始值为 10
+    vector<int> vec4 = {1, 2, 3, 4, 5}; //    vector<int> vec4 {1, 2, 3, 4, 5};
+    vector<int> vec5;
+    vec5.assign(5, 10);         //c3的元素全部替换为5个值为10的元素。
+
+    vector<int> vec6;
+    vec6.assign(vec4.begin(), vec4.end());
+
+    // 使用自定义的比较器进行排序1
+    struct CustomCompare {
+        bool operator()(int a, int b) const 
+        {
+            return a > b;  // 降序排序
+        }
+    };
+    std::vector<int> vec8 = {30, 10, 20, 50, 40};
+    std::sort(vec8.begin(), vec8.end(), CustomCompare());
 
 
+    // 使用自定义的比较器进行排序2
+    struct CompareByAge 
+    {
+        bool operator()(const Person& a, const Person& b) const 
+        {
+            return a.age > b.age;
+        }
+    };
+    std::vector<Person> people = 
+    {
+        {"Alice", 25},
+        {"Bob", 30},
+        {"Charlie", 20}
+    };
+    std::sort(people.begin(), people.end(), CompareByAge());
+
+
+    std::sort(people.begin(), people.end(), [](const Person& a, const Person& b) {return a.age > b.age;});  // 排序
+
+
+
+    // 容器的容量
+    int capacity = vec6.capacity();
+
+    //     reserve()函数用于预留空间，但并不改变vector容器的大小。
+    int value= 6;
+    vector<int> vec7;
+    vec7.resize(5);          // 改变为5个元素的大小，默认值为元素类型的默认构造函数的值
+    vec7.resize(10, value);  // 改变为10个元素的大小，并使用指定的value做为默认值
+
+    // 插入
+    vec7.push_back(value);
+    vec7.emplace_back(1);   // 直接插入，比puch pack 要高
+
+    vector<int> anotherVec = {6, 7, 8};
+    vec.insert(vec.begin() + 2, anotherVec.begin(), anotherVec.end());  // 在第三个位置前插入anotherVec的所有元素
+
+
+    // 弹出
+    vec7.pop_back();
+    
+    //删除
+    vec.erase(vec.begin() + 2);  // 删除
+    vec.erase(vec.begin() + 2, vec.begin() + 5);  //
+    vec.clear();  // 清空所有元素
+
+    // 遍历
+    vector<int>::iterator it1 = vec.begin(); // 指向第一个元素
+    for (auto it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    for(int num : vec) 
+    {
+        cout << num << " "; // 输出每个元素 
+    }
+    
+    //交换
+    std::swap(vec, vec2); // 交换vec1和vec2的内容
+    
+    // 访问元素
+    int element = vec.at(2);    // 更安全
+    int element1 = vec[2];
+
+    int firstElement = vec.front(); // 获取首元素的值
+    int lastElement = vec.back(); // 获取末尾元素的值
+
+    return 0;
+}
+
+
+#include "array"
+// std::array: 性能非常高，因为其大小是固定的，所有数据都在栈上分配,一旦创建，不能改变其大小。
+int testArray()
+{
+    using namespace std;
+    std::array<int, 5> arr1 = {1, 2, 3, 4, 5};  // 初始化 5 个元素
+    std::array<int, 5> arr2 = {};               // 默认初始化为 0
+    return 0;
+}
+
+
+//
 int testPair()
 {
     using namespace std;
