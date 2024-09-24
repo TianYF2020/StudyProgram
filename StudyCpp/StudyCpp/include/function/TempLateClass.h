@@ -24,9 +24,24 @@ public:
         return (x > y) ? x : y;
     }
 
+    //在外部实现
+    void showMe(T a);
+
 private:
     T x,y;
 };
+
+
+//在实现文件中实现类模板中定义的函数
+template <typename T>
+void C_TempLateClass<T>::showMe(T a)
+{
+    std::cout << a << std::endl;
+}
+
+
+
+extern int testTempLate();
 
 
 

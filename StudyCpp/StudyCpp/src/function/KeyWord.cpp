@@ -112,7 +112,7 @@ int testVist()
     var = std::string("hello");
     std::visit(Visitor{}, var);  // 输出: string: hello
 
-    std::variant<int, double, std::string> var = "hello";
+    std::variant<int, double, std::string> var1 = "hello";
 
     // 使用 lambda 表达式作为访问器
     std::visit([](auto&& arg) {
@@ -120,12 +120,12 @@ int testVist()
     }, var);  // 输出: Value: hello
 
     //
-    std::variant<int, double> var1 = 10;
-    std::variant<int, double> var2 = 3.14;
+    std::variant<int, double> var3 = 10;
+    std::variant<int, double> var4 = 3.14;
     // 访问两个 variant
     std::visit([](auto&& arg1, auto&& arg2) {
         std::cout << "arg1: " << arg1 << ", arg2: " << arg2 << std::endl;
-    }, var1, var2);  // 输出: arg1: 10, arg2: 3.14
+    }, var3, var4);  // 输出: arg1: 10, arg2: 3.14
 
 //std::visit 是一个用于访问和操作 std::variant 中当前存储值的工具。
 //通过 std::visit，可以更优雅、类型安全地处理 variant 的值，避免了手动类型检查和类型转换。

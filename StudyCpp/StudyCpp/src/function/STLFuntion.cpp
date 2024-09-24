@@ -4,6 +4,8 @@
 
 // #include <bits/stdc++.h> //涵盖C++所有库函数，用它就对了
 
+
+
 int TestRandom()
 {
     // 创建随机数生成器，使用当前时间作为种子

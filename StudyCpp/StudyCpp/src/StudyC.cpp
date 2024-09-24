@@ -1,6 +1,7 @@
 ﻿#include "StudyC.h"
 #include "VarParamClass.h"
 #include "TempLateClass.h"
+#include "TempLateClass.hpp"
 #include "FunCallBack.h"
 #include "SmartPointer.h"
 #include "NamespaceClass.h"
@@ -31,7 +32,9 @@ StudyC::StudyC(QWidget *parent)
     //测试构造
     // TestConstructor();
 
-    TestSTL();
+    // TestSTL();
+    
+    TestTemplate();
 }
 
 StudyC::~StudyC()
@@ -112,4 +115,9 @@ void StudyC::TestConstructor()
 void StudyC::TestSTL()
 {
     testPair();
+}
+
+void StudyC::TestTemplate()
+{
+    testTempLate();
 }

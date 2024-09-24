@@ -17,6 +17,8 @@ public:
     void TestConstructor();
 
     void TestSTL();
+
+    void TestTemplate();
 private:
     Ui::StudyCClass ui;
 };

@@ -126,6 +126,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\function\KeyWord.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\MagicEnum.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\Optional.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\STLFuntion.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\StudyC.ui">

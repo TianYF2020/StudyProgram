@@ -16,20 +16,15 @@
 // pair             整合类型
 // lower_bound      二分下界 
 // upper_bound      二分上界 
-
+extern int TestRandom();
 extern int testPair();
-
-extern int testQueue();
-
-extern int testPriority_queue();
-
-extern int testMap();
-
+extern int testVector();
 extern int testArray();
 
-extern int testSet();
-
+extern int testQueue();
+extern int testPriority_queue();
 extern int testStack();
-
-
-
+extern int testList();
+extern int testSet();
+extern int testMap();
+extern int testTuple();

@@ -1,5 +1,6 @@
 #include "MagicEnum.h"
 
+enum class Color { Red, Green, Blue };
 
 int testMagicEnum()
 {
@@ -9,8 +10,20 @@ int testMagicEnum()
     //枚举转字符串 ，
     std::cout << "enum name:  " << magic_enum::enum_name(day) << "\n";
 
+
+
+    std::vector<std::string> nameVec;
+    // 遍历枚举的所有名称
+    for (auto name : magic_enum::enum_names<Color>()) {
+        std::cout << name << std::endl;
+        nameVec.push_back(std::string(name));
+    }
+
     return 0;
 }
+
+
+
 
 
 // magic_enum 是一个开源的、单头文件的、枚举操作工具箱

@@ -67,7 +67,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -76,7 +76,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -138,10 +138,14 @@
     <ClCompile Include="src\function\CThreadFun.cpp" />
     <ClCompile Include="src\function\FunCallBack.cpp" />
     <ClCompile Include="src\function\JsonClass.cpp" />
+    <ClCompile Include="src\function\KeyWord.cpp" />
     <ClCompile Include="src\function\LambdaClass.cpp" />
+    <ClCompile Include="src\function\MagicEnum.cpp" />
     <ClCompile Include="src\function\NameSpaceClass.cpp" />
     <ClCompile Include="src\function\OperatorClass.cpp" />
+    <ClCompile Include="src\function\Optional.cpp" />
     <ClCompile Include="src\function\SmartPointer.cpp" />
+    <ClCompile Include="src\function\STLFuntion.cpp" />
     <ClCompile Include="src\function\TempLateClass.cpp" />
     <ClCompile Include="src\function\ThreadAsync.cpp" />
     <ClCompile Include="src\function\ThreadClass.cpp" />
