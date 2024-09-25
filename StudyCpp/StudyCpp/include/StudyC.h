@@ -19,6 +19,8 @@ public:
     void TestSTL();
 
     void TestTemplate();
+
+    void TestReflectFun();
 private:
     Ui::StudyCClass ui;
 };

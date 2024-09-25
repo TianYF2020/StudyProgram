@@ -55,9 +55,10 @@ qt6_wrap_ui(UI_HEADERS ${UI_FILES})
 file(GLOB QRC_FILES "${STUDYCPP_QRC_DIR}/StudyC.qrc")
 qt6_add_resources(QRC_SOURCES ${QRC_FILES})
 
-## ********** 添加第三方库 ，也可以使用 
+## ********** 添加第三方库 ，也可以使用 这里主要是动态库
 set(LIBRARIES
-jsoncpp  "${STUDYCPP_LIB_DIR}/jsoncpp"
+jsoncpp     "${STUDYCPP_LIB_DIR}/jsoncpp"
+# reflectcpp  "${STUDYCPP_LIB_DIR}/reflectcpp/lib"
 )
 
 message("using extren library")
@@ -89,20 +90,32 @@ while(${INDEX} LESS ${LIBRARY_COUNT})
     math(EXPR INDEX "${INDEX} + 2")
 endwhile()
 
+
+#库的搜索路径
+link_directories(
+${STUDYCPP_LIB_DIR}/reflectcpp/lib
+)
+
 add_executable(${PROJECT_NAME} main.cpp  ${STUDYCPP_SRC_FILES} ${UI_HEADERS} ${QRC_SOURCES})
 
 
 message( "${STUDYCPP_SRC_FILES}\n ${UI_HEADERS}\n ${QRC_SOURCES}")
 
-
+message("${STUDYCPP_LIB_DIR}/reflectcpp/lib")
 # 链接Qt库和依赖库  ****可以在这边把库路径加进来，然后直接target_link_libraries 使用
 target_include_directories(${PROJECT_NAME}  PRIVATE
 ${STUDYCPP_INCLUDE_DIR}
 ${STUDYCPP_INCLUDE_DIR}/function
 ${STUDYCPP_LIB_DIR}/jsoncpp/include 
 ${STUDYCPP_LIB_DIR}/magic_enum/include
+${STUDYCPP_LIB_DIR}/reflectcpp/include
 )
 
 message("**********${LINK_LIBS}************")
 # 链接Qt库和依赖库
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Widgets Qt6::Gui ${LINK_LIBS})
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+Qt6::Core 
+Qt6::Widgets 
+Qt6::Gui 
+reflectcpp
+${LINK_LIBS})

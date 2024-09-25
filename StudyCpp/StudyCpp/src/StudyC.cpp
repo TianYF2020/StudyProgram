@@ -16,6 +16,7 @@
 #include "MagicEnum.h"
 #include "CommonTest.h"
 #include "STLFuntion.h"
+#include "ReflectFun.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
@@ -35,6 +36,8 @@ StudyC::StudyC(QWidget *parent)
     // TestSTL();
     
     TestTemplate();
+
+    TestReflectFun();
 }
 
 StudyC::~StudyC()
@@ -120,4 +123,9 @@ void StudyC::TestSTL()
 void StudyC::TestTemplate()
 {
     testTempLate();
+}
+
+void StudyC::TestReflectFun()
+{
+    testRefectFuntion();
 }
