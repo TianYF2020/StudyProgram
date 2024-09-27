@@ -3,8 +3,7 @@
 #include <random>
 
 // #include <bits/stdc++.h> //涵盖C++所有库函数，用它就对了
-
-
+//迭代器卡 能否随机存储，组要看能内存是否连续，能否使用叠加器++操作，支持distance
 
 int TestRandom()
 {
@@ -531,9 +530,9 @@ int testList()
     }
 
     // 列表移动
-    std::list<int>::iterator it1;
-    std::advance(it, 2); // `it` 被移动了2步，`it` 的值发生了改变
-
+    
+    std::list<int>::iterator it1 = myList.begin();
+    std::advance(it, 2);              // `it` 被移动了2步，`it` 的值发生了改变
     std::list<int>::iterator it2 = std::next(it, 2); // `it` 不变，返回新的迭代器 `it2`
 
     // 翻转列表
@@ -541,6 +540,13 @@ int testList()
 
     // 排序列表（升序）
     myList.sort();
+
+    myList.unique(); // 删除连续的重复元素，需要先进行排列，在进行删除
+
+    list<int> list5{1,2,3,4,5};
+    list<int> list6{4,5,6,7,8};
+    list5.merge(list3);
+    list5.reverse();    // 
     
     return 0;
 }

@@ -17,6 +17,7 @@
 #include "CommonTest.h"
 #include "STLFuntion.h"
 #include "ReflectFun.h"
+#include "KeyWord.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
@@ -35,9 +36,11 @@ StudyC::StudyC(QWidget *parent)
 
     // TestSTL();
     
-    TestTemplate();
+    // TestTemplate();
 
     TestReflectFun();
+
+    // TestKeyword();
 }
 
 StudyC::~StudyC()
@@ -128,4 +131,10 @@ void StudyC::TestTemplate()
 void StudyC::TestReflectFun()
 {
     testRefectFuntion();
+}
+
+
+void StudyC::TestKeyword()
+{
+    testAllKeyWord();
 }

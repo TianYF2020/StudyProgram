@@ -3,6 +3,7 @@
 #include <array>
 #include <tuple>
 #include <optional>
+#include <vector>
 
 //声明静态变量或函数。
 static int a = 10;
@@ -23,7 +24,8 @@ int add(int a,int b)
 
 
 //static_for
-// 编译时递归实现 static_for
+// 编译时递归实现 static_for ,这里使用了模版参数，意思，且可以使任何参数来调用、
+// 这里模版F 是传参，进来的，类型编译器推导，因此不需要声明参数了
 template <std::size_t Start, std::size_t End, typename F>
 void static_for(F const& func) {
     if constexpr (Start < End) {
@@ -31,6 +33,17 @@ void static_for(F const& func) {
         static_for<Start + 1, End>(func);  // 递归调用
     }
 }
+
+
+template <typename T, typename U>
+void check_types() {
+    if constexpr (std::is_same<T, U>::value) {
+        std::cout << "类型相同\n";
+    } else {
+        std::cout << "类型不同\n";
+    }
+}
+
 
 int testStatic_for() 
 {
@@ -130,4 +143,136 @@ int testVist()
 //std::visit 是一个用于访问和操作 std::variant 中当前存储值的工具。
 //通过 std::visit，可以更优雅、类型安全地处理 variant 的值，避免了手动类型检查和类型转换。
     return 0;
+}
+
+#include <list>
+int testslt1()
+{
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+
+    auto begin = vec.begin(); // 向量的起始迭代器
+    auto end = vec.end(); // 向量的结束迭代器
+
+    auto count = std::distance(begin, end); // 计算距离
+
+    std::list<int> list = {1, 2, 3, 4, 5};
+    std::list<int>::iterator it = list.begin();
+    std::advance(it, 2);              // `it` 被移动了2步，`it` 的值发生了改变
+    std::list<int>::iterator it2 = std::next(it, 2); // `it` 不变，返回新的迭代器 `it2`
+
+    return 0;
+}
+
+#include <iostream>
+#include <type_traits>
+
+template <typename T>
+void printType() {
+    // 使用 std::decay_t 获取衰减后的类型
+    using DecayType = std::decay_t<T>;
+    std::cout << "Original type: " << typeid(T).name() << std::endl;
+    std::cout << "Decayed type: " << typeid(DecayType).name() << std::endl;
+}
+
+int testDecay() {
+    printType<int>();            // 原始类型是 int，衰减后的类型也是 int
+    printType<int&>();           // 原始类型是 int&，衰减后的类型是 int
+    printType<const int[]>();    // 原始类型是 const int[]，衰减后的类型是 const int*
+    printType<void(int)>();      // 原始类型是 void(int)，衰减后的类型是 void(*)(int)
+    
+    return 0;
+}
+
+
+
+template <typename T, T v>
+struct integral_constant {
+    static constexpr T value =    v;
+    typedef T                     value_type;
+    typedef integral_constant     type;
+    
+    // ...
+};
+
+//静态断言 整形常量
+void testaaaaaaaaaaa()
+{
+    typedef integral_constant<int, 2> two_type;
+
+    
+    typedef integral_constant<int, 6> six_type;
+
+    static_assert(two_type::value * 3 == six_type::value, "2*3 != 6");
+}
+
+
+
+template<typename T>
+void testNoParams(T x) 
+{
+    std::cout << "Template no parameter " << x <<std::endl;
+}
+
+
+
+
+//constexprc
+// c++11中的constexpr指定的函数返回值和参数都必须保证是字面值，而且必须有且只有一行代码（return代码）。所以通常只能通过return 三目运算符+递归来计算返回的字面值。
+constexpr int max_value = 100; // 编译时常量
+constexpr int factorial (int n)
+{
+    return n > 0 ? n * factorial( n - 1 ) : 1;
+}
+
+constexpr int multiply(int x,int y)
+{
+    return x* y;
+}
+//将在编译时期计算
+const int var = multiply(10,10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void testAllKeyWord()
+{
+    // 无参函数，自动推导
+
+    testaaaaaaaaaaa();
+    int x = 0;
+    testNoParams(x);
+    
+    testDecay();
+
+    testslt1();
+
+    testVist();
+
+    testGet();
+
+    testStatic_for();
+
+
 }

@@ -38,3 +38,6 @@ private:
     std::string sName;
 
 };
+
+
+extern void testAllKeyWord();

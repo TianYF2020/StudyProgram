@@ -21,6 +21,8 @@ public:
     void TestTemplate();
 
     void TestReflectFun();
+
+    void TestKeyword();
 private:
     Ui::StudyCClass ui;
 };
