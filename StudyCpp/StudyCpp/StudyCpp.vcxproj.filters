@@ -138,6 +138,12 @@
     <ClCompile Include="src\function\STLFuntion.cpp">
       <Filter>Source Files\funciton</Filter>
     </ClCompile>
+    <ClCompile Include="src\function\FriendFun.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
+    <ClCompile Include="src\function\ReflectFun.cpp">
+      <Filter>Source Files\funciton</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\StudyC.ui">
@@ -148,5 +154,12 @@
     <QtRcc Include="source\StudyC.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\function\Untitled-1.dio">
+      <Filter>Source Files\funciton</Filter>
+    </None>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

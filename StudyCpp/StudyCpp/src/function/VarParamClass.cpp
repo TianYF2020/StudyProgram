@@ -1,9 +1,9 @@
-﻿#include "VarParamClass.h"
+﻿#include "VarParamClass.hpp"
 
 // 方案1 使用省略号（Ellipsis）
 void VarParamClass::PrintNumbers(int count, ...)
 {
-    cout << "This parent printf:";
+    std::cout << "This parent printf:";
     va_list args;
     va_start(args, count);
     for (int i = 0; i < count; ++i) 
@@ -30,4 +30,5 @@ void C_TestVarParam::PrintNumbers(int count, ...)
     va_end(args);
     std::cout << std::endl;
 }
+
 

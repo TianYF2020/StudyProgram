@@ -38,5 +38,5 @@ struct ShapePrinter {
     }
 };
 
-extern int testVariant();
+int testVariant();
 

@@ -2,6 +2,9 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_StudyC.h"
+#include "iostream"
+
+
 
 class StudyC : public QMainWindow
 {

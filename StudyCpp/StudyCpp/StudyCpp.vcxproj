@@ -66,23 +66,27 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;.\lib\reflectcpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\lib\jsoncpp;.\lib\reflectcpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jsoncpp.lib;reflectcpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>.\lib\jsoncpp\include;.\include;.\include\function;.\lib\magic_enum\include;.\lib\reflectcpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>.\lib\jsoncpp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>jsoncpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\lib\jsoncpp;.\lib\reflectcpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jsoncpp.lib;reflectcpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
@@ -136,6 +140,7 @@
     <ClCompile Include="src\function\CompileClass.cpp" />
     <ClCompile Include="src\function\ConstructorClass.cpp" />
     <ClCompile Include="src\function\CThreadFun.cpp" />
+    <ClCompile Include="src\function\FriendFun.cpp" />
     <ClCompile Include="src\function\FunCallBack.cpp" />
     <ClCompile Include="src\function\JsonClass.cpp" />
     <ClCompile Include="src\function\KeyWord.cpp" />
@@ -144,6 +149,7 @@
     <ClCompile Include="src\function\NameSpaceClass.cpp" />
     <ClCompile Include="src\function\OperatorClass.cpp" />
     <ClCompile Include="src\function\Optional.cpp" />
+    <ClCompile Include="src\function\ReflectFun.cpp" />
     <ClCompile Include="src\function\SmartPointer.cpp" />
     <ClCompile Include="src\function\STLFuntion.cpp" />
     <ClCompile Include="src\function\TempLateClass.cpp" />
@@ -158,6 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="source\StudyC.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="src\function\Untitled-1.dio" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

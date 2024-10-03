@@ -49,7 +49,7 @@ public:
 
 	int UpdataUIControl(int type, float value)
 	{
-		cout << "cb::C_Control:Class type = " << type << " out value = " << value << endl;
+		std::cout << "cb::C_Control:Class type = " << type << " out value = " << value << std::endl;
 		return 0;
 	}
 };
@@ -57,7 +57,7 @@ public:
 //更新调用函数的更新
 int UpdateUI(int type, float value)
 {
-	cout << "cb::function: type = " << type << " out value = " << value << endl;
+	std::cout << "cb::function: type = " << type << " out value = " << value << std::endl;
 	return 0;
 }
 
@@ -65,31 +65,31 @@ int UpdateUI(int type, float value)
 //使用类进行更新 - 普通复制传值
 void ThreadDealProces(AdjustRGB data, std::function<int(int, float)> cb)
 {
-	cout << "thread: " << data << endl;
+	std::cout << "thread: " << data << std::endl;
 	std::cout << "Tid = " << std::this_thread::get_id() << std::endl;
 	//std::shared_ptr<CallState> state = make_shared<CallState>();
-	std::unique_ptr<CallState> state = make_unique<CallState>();
+	std::unique_ptr<CallState> state = std::make_unique<CallState>();
 	state->bindFuntion(cb);
 	state->m_State = 1;
 	state->m_Value = 2.2f;
 	data.r = 128;
 	std::this_thread::sleep_for(std::chrono::seconds(1));
-	cout << "End thread " << endl;
+	std::cout << "End thread " << std::endl;
 }
 
 //使用类进行更新 引用传值
 void ThreadDealProces_Quote(AdjustRGB &data,std::function<int(int,float)> &cb)
 {
-	cout << "thread: " << data << endl;
+	std::cout << "thread: " << data << std::endl;
 	std::cout << "Tid = " << std::this_thread::get_id() << std::endl;
 	//std::shared_ptr<CallState> state = make_shared<CallState>();
-	std::unique_ptr<CallState> state = make_unique<CallState>();
+	std::unique_ptr<CallState> state = std::make_unique<CallState>();
 	state->bindFuntion(cb);
 	state->m_State = 1;
 	state->m_Value = 2.2f;
 	data.r = 128;
 	std::this_thread::sleep_for(std::chrono::seconds(1));
-	cout << "End thread " << endl;
+	std::cout << "End thread " << std::endl;
 }
 
 
@@ -100,20 +100,20 @@ int TestThreadFunction()
 	// 创建线程，把更新函数绑定进去，并传递数据
 	AdjustRGB data;	// 传入的数据
 	data = { 255,255,255 };
-	thread adjust(ThreadDealProces, data, UpdateUI);
+	std::thread adjust(ThreadDealProces, data, UpdateUI);
 	adjust.join();
-	cout << "Finish1: " << data << endl;
-	cout << endl;
+	std::cout << "Finish1: " << data << std::endl;
+	std::cout << std::endl;
 
 	// 创建线程把类中的更新函绑定进去，并传递数据
 	C_Control ctrl;		// UI端来更细数据的
 	data = { 0,0,0 };
 	std::function<int(int,float)> cb = std::bind(&C_Control::UpdataUIControl, &ctrl, std::placeholders::_1, std::placeholders::_2);
 	//ref() 指定是引用传值，对应要写上 &
-	thread adjustClass(ThreadDealProces_Quote, std::ref(data), std::ref(cb));
+	std::thread adjustClass(ThreadDealProces_Quote, std::ref(data), std::ref(cb));
 	adjustClass.join();
-	cout << "Finish2: " << data << endl;
-	cout << endl;
+	std::cout << "Finish2: " << data << std::endl;
+	std::cout << std::endl;
 	return 0;
 }
 
@@ -127,15 +127,15 @@ public:
 	}
 	void ThreadClassDeal(AdjustRGB data, std::function<int(int, float)> cb)
 	{
-		cout << "Class::thread: " << data << endl;
+		std::cout << "Class::thread: " << data << std::endl;
 		std::cout << "Class::Tid = " << std::this_thread::get_id() << std::endl;
-		std::unique_ptr<CallState> state = make_unique<CallState>();
+		std::unique_ptr<CallState> state = std::make_unique<CallState>();
 		state->bindFuntion(cb);
 		state->m_State = 1;
 		state->m_Value = 2.2f;
 		data.r = 128;
 		std::this_thread::sleep_for(std::chrono::seconds(1));
-		cout << "Class::End thread " << endl;
+		std::cout << "Class::End thread " << std::endl;
 	}
 };
 
@@ -147,7 +147,7 @@ int TestThreadClassFunction()
 	MyClass obj;				// 创建类对象,里面有现成函数
 	std::function<int(int, float)> cb = std::bind(&C_Control::UpdataUIControl, &ctrl, std::placeholders::_1, std::placeholders::_2);
 	//ref() 指定是引用传值，对应要写上 &
-	thread adjustClass(&MyClass::ThreadClassDeal, &obj, std::ref(data), std::ref(cb));
+	std::thread adjustClass(&MyClass::ThreadClassDeal, &obj, std::ref(data), std::ref(cb));
 	// 创建线程并在线程中执行类的成员函数
 	std::thread t(&MyClass::MyFunction, &obj, 42);  // 传递对象和参数
 	adjustClass.join();
@@ -161,14 +161,44 @@ void output(int i)
 	std::cout << "tid=" << std::this_thread::get_id() << std::endl;
 }
 
-int testBaseThread()
+int TestBaseThread()
 {
 	for (uint8_t i = 0; i < 4; i++)
 	{
-		thread t(output, i);
+		std::thread t(output, i);
 		t.detach(); // 线程分离
 	}
 	getchar();
 	return 0;
 }
 
+
+
+
+//线程同步的方式
+//1,互斥锁 2.条件变量 3.信号量 4.原子操作
+
+#include <mutex>
+
+std::mutex mymutex;
+int count = 0;
+
+void increment_counter(int time)
+{
+	for(int i=0; i<time; i++)
+	{
+		mymutex.lock();
+		count ++;
+		std::cout << std::this_thread::get_id() << std::endl;
+		mymutex.unlock();
+	}
+}
+
+int TestMutex()
+{
+	std::thread t1(increment_counter,100);
+	std::thread t2(increment_counter,100);
+	t1.join();
+	t2.join();
+	return 0;
+}

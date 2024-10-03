@@ -109,6 +109,7 @@ ${STUDYCPP_INCLUDE_DIR}/function
 ${STUDYCPP_LIB_DIR}/jsoncpp/include 
 ${STUDYCPP_LIB_DIR}/magic_enum/include
 ${STUDYCPP_LIB_DIR}/reflectcpp/include
+${STUDYCPP_LIB_DIR}/nlohmann/include/include
 )
 
 message("**********${LINK_LIBS}************")

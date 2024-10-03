@@ -41,7 +41,6 @@ void C_TempLateClass<T>::showMe(T a)
 }
 
 
-
 extern int testTempLate();
 
 

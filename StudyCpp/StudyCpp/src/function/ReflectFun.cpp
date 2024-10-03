@@ -3,6 +3,16 @@
 // #include "rfl/yaml.hpp"
 #include "rfl/json.hpp"
 
+enum class Shape { circle, square, rectangle };
+
+enum class Color { red = 256, green = 512, blue = 1024, yellow = 2048 };
+
+struct Item {
+  float pos_x;
+  float pos_y;
+  Shape shape;
+  Color color;
+};
 
 int testRefectFuntion()
 {
@@ -21,6 +31,9 @@ int testRefectFuntion()
     auto homer2 = rfl::json::read<Person>(json_string).value();
     std::cout << "Origin: "<< homer << std::endl;
     std::cout << homer2 << std::endl;
+
+
+
 
 
 

@@ -2,12 +2,14 @@
 #include "iostream"
 #include "thread"
 
-using namespace std;
+// using namespace std;
 
 class ThreadClass
 {
 };
 
 
-extern int TestThreadFunction();
-extern int TestThreadClassFunction();
+int TestThreadFunction();
+int TestThreadClassFunction();
+int TestBaseThread();
+int TestMutex();

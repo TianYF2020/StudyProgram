@@ -1,5 +1,4 @@
 ﻿#include "StudyC.h"
-#include "VarParamClass.h"
 #include "TempLateClass.h"
 #include "TempLateClass.hpp"
 #include "FunCallBack.h"
@@ -18,18 +17,20 @@
 #include "STLFuntion.h"
 #include "ReflectFun.h"
 #include "KeyWord.h"
+#include "VarParamClass.hpp"
+
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
-    ui.setupUi(this);
+    ui.setupUi(this); 
     // TestC();
 
-    //TestThreadFuntion();
+    // TestThreadFuntion();
 
     //TestCompileProperty();
 
-    // TestJson();
+    TestJson();
 
     //测试构造
     // TestConstructor();
@@ -38,9 +39,11 @@ StudyC::StudyC(QWidget *parent)
     
     // TestTemplate();
 
-    TestReflectFun();
+    // TestReflectFun();
 
     // TestKeyword();
+
+    // mPrint("first", 2, "third", 3.14159);
 }
 
 StudyC::~StudyC()
@@ -90,12 +93,15 @@ void StudyC::TestC()
 
 void StudyC::TestThreadFuntion()
 {
-    cout << "------Test thread function" << endl;
+    std::cout << "------Test thread function" << std::endl;
     TestThreadFunction();
-    cout << "------Test thread class function" << endl;
+    std::cout << "------Test thread class function" << std::endl;
     TestThreadClassFunction();
-    cout << "\n------Test async thread function" << endl;
+    std::cout << "\n------Test async thread function" << std::endl;
     testThreadAsync();
+
+    std::cout << "\n------Test mutex " << std::endl;
+    TestMutex();
 }
 
 
@@ -109,6 +115,11 @@ void StudyC::TestJson()
     JsonClass testJson;
     testJson.writeJsonFileTest("test.json");
     testJson.readJsonFileTest("test.json");
+
+    string path = "./config/";
+    createDirectory(path);
+    // testJson.writeNlohmannJsonFileTest(path+"nlohmann.json");
+    testJson.readNlohmannJsonFileTest(path+"nlohmann.json");
 }
 
 
