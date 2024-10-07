@@ -4,7 +4,9 @@
 #include <tuple>
 #include <optional>
 #include <vector>
-
+#include <iostream>
+#include <functional>
+#include <type_traits>
 //声明静态变量或函数。
 static int a = 10;
 
@@ -12,12 +14,40 @@ static int a = 10;
 constexpr unsigned int b = 20;
 
 // extern：用于声明外部变量或函数。
-extern int add();
+extern int add(int a, int b);
 
 int add(int a,int b)
 {
     return a + b;
 }
+
+class Printer
+{
+    public:
+    void printProduct(int a, int b) {
+        std::cout << "Product: " << a * b << std::endl;
+    }
+};
+
+//函数调用的例子
+void testFunCall()
+{
+    //1 std::function 是一个可调用对象的封装，能够存储任何可以调用的目标
+    std::function<int(int, int)> func = add; 
+    func(2, 3); 
+    //2 std::invoke 用于统一调用各种可调用对象（如函数、成员函数、lambda 等）
+    Printer printer;
+    std::invoke(add, 2, 3); // 调用普通函数
+    std::invoke(&Printer::printProduct, &printer, 3, 7); // 调用成员函数
+    //std::mem_fn std::mem_fn 用于生成一个可调用对象，该对象可以调用给定类型的成员函数。
+    auto memberFunc = std::mem_fn(&Printer::printProduct);
+    memberFunc(printer, 3, 7); // 调用成员函数
+
+// std::function 用于存储和调用各种可调用对象，具有类型擦除的特性。
+// std::invoke 统一调用机制，简化可调用对象的调用，不涉及存储。
+// std::mem_fn 主要用于生成成员函数的可调用对象，便于批量调用成员函数。
+}
+
 
 
 
@@ -180,6 +210,9 @@ int testDecay() {
     printType<const int[]>();    // 原始类型是 const int[]，衰减后的类型是 const int*
     printType<void(int)>();      // 原始类型是 void(int)，衰减后的类型是 void(*)(int)
     
+    // std::decay用途：去除类型的引用和 cv（const/volatile）修饰符，通常用于类型推导。
+    using DecayedType = std::decay<int&>::type; // DecayedType 为 int
+    
     return 0;
 }
 
@@ -233,16 +266,75 @@ const int var = multiply(10,10);
 
 
 
+// void TestMem_fn()
+// {
+//     Printer printer;
+//     auto memberFunc = std::mem_fn(&Printer::printProduct);
+//     memberFunc(printer, 2, 3); // 输出 Product: 6
+// }
 
 
 
+#include <type_traits>
+#include <functional>
+
+int add(int x, double y)
+{
+    return x + static_cast<int>(y);
+}
+// c++14之前
+// std::result_of是一个函数类型萃取器（function type traits），它可以推导函数类型的返回值类型，它定义在头文件<type_traits>中。std::result_of模板类需要两个模板参数：第一个是函数类型，第二个是函数的参数类型。它的定义如下：
+// template <typename F, typename... Args>
+// class result_of<F(Args...)>;
+// 在模板参数中，F必须是可调用类型、对函数的引用或对可调用类型的引用，Args代表函数参数类型。例如，如果我们有一个函数add，它的类型为int(int, double)，我们可以按照下列示例代码来使用std::result_of以获取其返回值类型
+// int testresult_of()
+// {
+//     std::result_of<std::function<int(int, double)>(int, double)>::type result = 0;
+//     static_assert(std::is_same<decltype(result), int>::value, "result type should be int");
+//     return 0;
+// }
+
+// int testresult_of_t()
+// {
+//     std::result_of_t<decltype(&add)(int, double))> result = 0;
+//     static_assert(std::is_same<decltype(result), int>::value, 
+//     return 0;
+// }
 
 
 
+// std::invoke_result/std::invoke_result_t的定义如下：
+
+template <typename F, typename... Args>
+struct invoke_result;
+template <typename F, typename... Args>
+using invoke_result_t = typename invoke_result<F, Args...>::type;
 
 
+class A
+{
+public:
+    int add(int x, double y)
+    {
+        return x + static_cast<int>(y);
+    }
+};
 
 
+int testinvoke_result()
+{
+    //例子1 访问成员函数
+    std::invoke_result_t<decltype(&A::add), A*, int, double> result = 0;
+    static_assert(std::is_same<decltype(result), int>::value, "result type should be int");
+    
+        //例子2 访lambda表达式
+    std::function<int(int, double)> add = [](int x, double y) {
+        return x + static_cast<int>(y);
+    };
+    std::invoke_result_t<decltype(add), int, double> result1 = 0;
+    static_assert(std::is_same<decltype(result1), int>::value, "result type should be int");
+    return 0;
+}
 
 
 

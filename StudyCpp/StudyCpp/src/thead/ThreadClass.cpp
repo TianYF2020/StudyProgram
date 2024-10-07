@@ -175,30 +175,4 @@ int TestBaseThread()
 
 
 
-//线程同步的方式
-//1,互斥锁 2.条件变量 3.信号量 4.原子操作
 
-#include <mutex>
-
-std::mutex mymutex;
-int count = 0;
-
-void increment_counter(int time)
-{
-	for(int i=0; i<time; i++)
-	{
-		mymutex.lock();
-		count ++;
-		std::cout << std::this_thread::get_id() << std::endl;
-		mymutex.unlock();
-	}
-}
-
-int TestMutex()
-{
-	std::thread t1(increment_counter,100);
-	std::thread t2(increment_counter,100);
-	t1.join();
-	t2.join();
-	return 0;
-}

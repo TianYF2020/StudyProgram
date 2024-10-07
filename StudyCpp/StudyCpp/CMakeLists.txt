@@ -106,6 +106,7 @@ message("${STUDYCPP_LIB_DIR}/reflectcpp/lib")
 target_include_directories(${PROJECT_NAME}  PRIVATE
 ${STUDYCPP_INCLUDE_DIR}
 ${STUDYCPP_INCLUDE_DIR}/function
+${STUDYCPP_INCLUDE_DIR}/thread
 ${STUDYCPP_LIB_DIR}/jsoncpp/include 
 ${STUDYCPP_LIB_DIR}/magic_enum/include
 ${STUDYCPP_LIB_DIR}/reflectcpp/include

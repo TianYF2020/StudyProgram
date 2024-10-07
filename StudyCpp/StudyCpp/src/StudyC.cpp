@@ -6,9 +6,7 @@
 #include "NamespaceClass.h"
 #include "VariantClass.h"
 #include "OperatorClass.h"
-#include "ThreadClass.h"
 #include "CompileClass.h"
-#include "ThreadAsync.h"
 #include "ConstructorClass.h"
 #include "JsonClass.h"
 #include "LambdaClass.h"
@@ -18,7 +16,7 @@
 #include "ReflectFun.h"
 #include "KeyWord.h"
 #include "VarParamClass.hpp"
-
+#include "CommonThread.h"
 
 StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
@@ -26,11 +24,12 @@ StudyC::StudyC(QWidget *parent)
     ui.setupUi(this); 
     // TestC();
 
+TestBarrier();
     // TestThreadFuntion();
 
     //TestCompileProperty();
 
-    TestJson();
+    // TestJson();
 
     //测试构造
     // TestConstructor();

@@ -12,4 +12,3 @@ class ThreadClass
 int TestThreadFunction();
 int TestThreadClassFunction();
 int TestBaseThread();
-int TestMutex();

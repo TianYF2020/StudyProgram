@@ -143,10 +143,10 @@
 #include <mutex>              // std::mutex, std::unique_lock
 #include <condition_variable> // std::condition_variable
 using namespace std;
-std::mutex mtx;
-std::mutex mtx1;
-std::condition_variable cv;
-std::condition_variable cv1;
+static std::mutex mtx;
+static std::mutex mtx1;
+static std::condition_variable cv;
+static std::condition_variable cv1;
 int cargo = 0;
 bool shipment_available()
 {
