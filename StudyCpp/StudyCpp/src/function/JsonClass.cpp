@@ -204,6 +204,8 @@ void JsonClass::readNlohmannJsonFileTest(const std::string& filename)
 
     // 读取 serial 节点
     auto serial = json["serial"];
+    std::string str1 =serial["串口号"].dump(); //  里面带有引号
+    std::string str2 = serial["串口号"].get<std::string>(); //不带有引号的
     std::cout << "串口号: " << serial["串口号"] << std::endl;
     std::cout << "波特率: " << serial["波特率"] << std::endl;
 

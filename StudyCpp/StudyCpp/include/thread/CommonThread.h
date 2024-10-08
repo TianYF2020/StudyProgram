@@ -18,3 +18,6 @@ int testSemaphore();
 int TestSemaphore();
 
 int TestBarrier();
+
+
+int TestCommonThread();

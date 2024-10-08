@@ -24,12 +24,16 @@ StudyC::StudyC(QWidget *parent)
     ui.setupUi(this); 
     // TestC();
 
-TestBarrier();
+    // TestBarrier();
+    
+    TestCommonThread();
+    
     // TestThreadFuntion();
 
     //TestCompileProperty();
 
     // TestJson();
+
 
     //测试构造
     // TestConstructor();

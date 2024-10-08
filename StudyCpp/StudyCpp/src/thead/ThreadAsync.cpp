@@ -10,6 +10,9 @@ int longTask(int num)
     return num * 2;
 }
 
+
+//get 只能调用一次
+
 int testThreadAsync()
 {
     // 使用std::async启动异步任务   默认是std::lanch::async|std::lanch::deferred 不确定什么时候执行
@@ -32,6 +35,7 @@ int testThreadAsync()
 
 
 // promise 设置异步操作结果的机制
+//promise 可以在途中set值，并获取到比价方便，其他适合复杂的内容
 int TestThreadPromise()
 {
     std::promise<int> prom;
