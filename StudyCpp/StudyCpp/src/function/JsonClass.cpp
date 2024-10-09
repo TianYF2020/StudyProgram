@@ -213,7 +213,4 @@ void JsonClass::readNlohmannJsonFileTest(const std::string& filename)
     std::cout << "串口号: " << serial["串口号"] << std::endl;
     std::cout << "波特率: " << serial["波特率"] << std::endl;
 
-
-
-
 }
