@@ -26,13 +26,13 @@ StudyC::StudyC(QWidget *parent)
 
     // TestBarrier();
     
-    TestCommonThread();
+    // TestCommonThread();
     
     // TestThreadFuntion();
 
     //TestCompileProperty();
 
-    // TestJson();
+    TestJson();
 
 
     //测试构造
@@ -121,7 +121,7 @@ void StudyC::TestJson()
 
     string path = "./config/";
     createDirectory(path);
-    // testJson.writeNlohmannJsonFileTest(path+"nlohmann.json");
+    testJson.writeNlohmannJsonFileTest(path+"nlohmann.json");
     testJson.readNlohmannJsonFileTest(path+"nlohmann.json");
 }
 

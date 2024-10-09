@@ -112,6 +112,18 @@ struct AdjustCapability
 };
 
 
+//reflect 反射函数说明
+// #define GET_TYPE_STR(type) #type     //获取类型名称
+// typeid(AdjustCapability).name()      //获取类型名的字符串，可能会包含enum struct, 不好用
+//枚举
+// rfl::get_enumerator_array<DEV_TYPE>();           //获取枚举上说字符
+// rfl::enum_to_string(DEV_TYPE::DEV_3683);         // 单枚举转字符
+// DEV_TYPE test_enum = rfl::string_to_enum<DEV_TYPE>("DEV_3683").value();   // 字符转枚举
+//类
+// rfl::fields<AdjustCapability>();     //获取到结构体上类型名和名字
+// std::string test_string = rfl::json::write(AdjustCapability());  //结构体转成string,可以配合nlohmann pase来进行处理
+// 例子    json["test"] = nlohmann::json().parse(rfl::json::write(AdjustCapability()));
+// AdjustCapability test = rfl::json::read<AdjustCapability>(json_string).value();   //字符串转结构体
 
 
 void JsonClass::writeNlohmannJsonFileTest(const std::string& filename)
@@ -123,6 +135,7 @@ void JsonClass::writeNlohmannJsonFileTest(const std::string& filename)
 
     // auto enumerators_named_tuple = rfl::get_enumerators<DEV_TYPE>();
     auto enumerator_array = rfl::get_enumerator_array<DEV_TYPE>();  
+
     std::vector<std::string> deviceTypes;
     for(int i=0; i<enumerator_array.size(); i++)
     {
@@ -137,24 +150,17 @@ void JsonClass::writeNlohmannJsonFileTest(const std::string& filename)
 
     AdjustCapability temp;
     const std::string json_string = rfl::json::write(temp);
-
+    auto printfields = rfl::fields<AdjustCapability>();  //获取到结构体上的
     // 为每个设备类型添加色温、色域、亮度和值
-    for (const auto &type : deviceTypes) {
-        // adjust[type] = {
-        //     {"Gain", false},
-        //     {"Gamma", false},
-        //     {"Gamut", false},
-        //     {"Bright", false},
-        //     {"HSB", false},
-        //     {"Lut", false},
-        // };
+    for (const auto &type : deviceTypes) 
+    {
         for (const auto& f : rfl::fields<AdjustCapability>()) 
         {
             adjust[type][f.name()] = false;
-            // std::cout << "name: " <<  << ", type: " << f.type() << std::endl;
         }
-
     }
+    
+    // json["test"] = nlohmann::json().parse(rfl::json::write(AdjustCapability()));
     // 创建 serial 节点
     json["adjust"] = adjust;
     json["serial"] = {
@@ -166,8 +172,6 @@ void JsonClass::writeNlohmannJsonFileTest(const std::string& filename)
     std::ofstream file(filename);
     file << json.dump(4); // 4表示缩进
     file.close();
-
-
 
 }
 #include <map>
@@ -208,5 +212,8 @@ void JsonClass::readNlohmannJsonFileTest(const std::string& filename)
     std::string str2 = serial["串口号"].get<std::string>(); //不带有引号的
     std::cout << "串口号: " << serial["串口号"] << std::endl;
     std::cout << "波特率: " << serial["波特率"] << std::endl;
+
+
+
 
 }
