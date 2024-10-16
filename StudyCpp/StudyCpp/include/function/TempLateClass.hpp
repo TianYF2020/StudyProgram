@@ -25,16 +25,16 @@ private:
 };
 
 
-int testMyTemplate()
-{
-    // 模版类没有自动推导的可能
-    Student<int, double> stu1("Tom", 18, 98);
-    Student<char, double> stu2("lias", 'A', 98);
+// int testMyTemplate()
+// {
+//     // 模版类没有自动推导的可能
+//     Student<int, double> stu1("Tom", 18, 98);
+//     Student<char, double> stu2("lias", 'A', 98);
 
-    Student stu3("lias", 12, 98);
-    stu1.ShowMe();
-    return 0;
-}
+//     Student stu3("lias", 12, 98);
+//     stu1.ShowMe();
+//     return 0;
+// }
 
 //延迟实例化
 template <class T>
@@ -50,22 +50,11 @@ public:
 };
 
 
-int testMyTemplateClass()
-{
-    // Myclass<int> ob;
-    // ob.runing();    // 运行会报错
-
-    MyclassTest<Student<int,double>> ob;
-    ob.runing();    // 运行会报错
-
-    return 0;
-}
-
 
 
 //*********类作为模版参数传递*************
 //方法1 - 确定具体的类型即可
-void fun1(Student<int,double> &p)
+inline void fun1(Student<int,double> &p)
 {
     p.ShowMe();
 }
@@ -113,4 +102,18 @@ public:
     U age;
 };
 
+
+
+// C++20引入了概念（Concepts），其中包含了一个新的关键字——requires，用于限制模板参数的类型。requires表达式能够对模板参数进行约束，确保模板实例化时满足特定的条件。
+template <typename T, typename U>
+requires std::integral<T> && std::floating_point<U>   // 约束一个是Int ，一个是float
+void print1(T t, U u) {
+    std::cout << "Integer: " << t << ", Floating point: " << u << std::endl;
+}
+
+template <typename T, typename U>
+requires (std::same_as<T, int> || std::same_as<T, float>) && std::floating_point<U>
+void print2(T t, U u) {
+    std::cout << "T: " << t << ", U: " << u << std::endl;
+}
 

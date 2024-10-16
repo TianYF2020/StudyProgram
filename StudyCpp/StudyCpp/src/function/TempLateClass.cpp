@@ -1,6 +1,5 @@
 #include "TempLateClass.h"
-
-
+#include "TempLateClass.hpp"
 
 //class 更常用于类模板的定义，虽然它在类型模板中也可以使用。
 template <class T,class U>
@@ -49,3 +48,29 @@ int testTempLate()
 
 // ctrl+alt+d   vs中进入调试反汇编汇代码,看掉了几次call 指令，
 //00007FF64FC796D8  call        std::operator<<<std::char_traits<char> > (07FF64FBF56AEh) 
+
+
+
+int testMyTemplate()
+{
+    // 模版类没有自动推导的可能
+    Student<int, double> stu1("Tom", 18, 98);
+    Student<char, double> stu2("lias", 'A', 98);
+
+    Student stu3("lias", 12, 98);
+    stu1.ShowMe();
+    return 0;
+}
+
+
+
+int testMyTemplateClass()
+{
+    // Myclass<int> ob;
+    // ob.runing();    // 运行会报错
+
+    MyclassTest<Student<int,double>> ob;
+    ob.runing();    // 运行会报错
+
+    return 0;
+}

@@ -63,4 +63,5 @@ int testTypeDeal()
     printDecayType<decltype(arr)>(); // 输出指针类型
     printDecayType<const int>();       // 输出 int
     printDecayType<void(*)()>();       // 输出指向函数的指针
+    return 0;
 }

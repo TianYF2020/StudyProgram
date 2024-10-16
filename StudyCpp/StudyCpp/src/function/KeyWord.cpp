@@ -13,6 +13,22 @@ static int a = 10;
 //constexpr：声明编译时常量。
 constexpr unsigned int b = 20;
 
+struct myStruct
+{
+    int value;
+};
+
+// 判断是左值引用还是右值引用
+void printValue(const myStruct&& myStruct)
+{
+    if (std::is_lvalue_reference<decltype(myStruct)>::value) {
+        std::cout << "Left value\n";
+    } else {
+        std::cout << "Right value\n";
+    }
+}
+
+
 // extern：用于声明外部变量或函数。
 extern int add(int a, int b);
 
@@ -343,11 +359,6 @@ int testinvoke_result()
 
 
 
-
-
-
-
-
 void testAllKeyWord()
 {
     // 无参函数，自动推导
@@ -368,3 +379,4 @@ void testAllKeyWord()
 
 
 }
+
