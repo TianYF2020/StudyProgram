@@ -27,3 +27,22 @@ void testString_view()
 
 }
 
+
+
+struct MyStruct {
+    int a;
+    static constexpr int myValue = 42;  // 属于 MyStruct 的静态常量
+};
+
+struct AnotherStruct {
+    int b;
+    static constexpr int myValue = 100;  // 另一个结构体中的同名静态常量
+};
+
+int testStaticConstexpr() {
+    // 通过类名访问
+    int value1 = MyStruct::myValue;    // 42
+    int value2 = AnotherStruct::myValue; // 100
+
+    return 0;
+}

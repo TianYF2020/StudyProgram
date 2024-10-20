@@ -7,11 +7,44 @@
 #include <iostream>
 #include <functional>
 #include <type_traits>
+
 //声明静态变量或函数。
 static int a = 10;
 
 //constexpr：声明编译时常量。
 constexpr unsigned int b = 20;
+
+//编译期计算函数，如果不能有new 动态分配内存的情况，
+// 如果想函数是编译期运行，那么输入的也是constexpr常量
+constexpr unsigned int addAB(unsigned int a, unsigned int b)
+{
+    return a + b;
+}
+
+// 编译器的常量对象
+class myObject
+{
+public:
+    // 构造函数必须使用初始化列表，
+    //1.构造函数必须使用constexpr关键词修饰 2.成员函数的初始化必须通过初始化列表完成
+    constexpr myObject(int a,int b,int c):m_id(allid++),m_a(a),m_b(b),m_c(c){}   //在构造时候为const 初始化
+
+    constexpr int cal_sum() const 
+    {
+        return m_a + m_b + m_c;
+    }
+    static int a = 0 ;
+    static inline int allid = 0;
+private:
+    int m_a, m_b, m_c;
+
+    const int m_id;    // const 可以没有定义初始化，在构造时候初始化
+};
+// 使用
+// constexpr myObject(10,20,30);
+// constexpr int a = myObject.cal_sum();
+
+
 
 struct myStruct
 {
@@ -354,8 +387,45 @@ int testinvoke_result()
 
 
 
+//C++ 运行时类型识别 RTTI
+
+// typeid 获取类型,运行时编译期都能获取到
+void testTypeId()
+{
+    int a = 0;
+    std::cout << typeid(a).name() << " " << a << std::endl;   //int
+    MyBaseClass mStruct;  
+    std::cout << typeid(mStruct).name() << " " << a << std::endl; // MyBaseClass
+
+   // 对于枚举类型,可以使用 输出 enum:: 然后名字，需要处理
 
 
+    int *p = &a;
+    std::cout << typeid(p).name() << " " << a << std::endl;   //int
+    MyBaseClass *mClass = new MyBaseClass;  
+    std::cout << typeid(mClass).name() << " " << a << std::endl; // MyBaseClass
+    // 静态时候，原来声明的啥，输出的是啥，声明父类，后面是子类输出也是父类
+}
+
+
+class Base {
+public:
+    virtual ~Base() = default; // 确保有虚析构函数
+};
+
+class Derived1 : public Base {};
+class Derived2 : public Base {};
+
+void identify(Base* base) 
+{
+    if (dynamic_cast<Derived1*>(base)) {
+        std::cout << "base is of type Derived1" << std::endl;
+    } else if (dynamic_cast<Derived2*>(base)) {
+        std::cout << "base is of type Derived2" << std::endl;
+    } else {
+        std::cout << "base is of an unknown type" << std::endl;
+    }
+}
 
 
 

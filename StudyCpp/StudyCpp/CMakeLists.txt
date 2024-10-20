@@ -66,6 +66,7 @@ message("using extren library")
 list(LENGTH  LIBRARIES LIBRARY_COUNT)
 set(INDEX 0)
 
+# add_library(myModule  MODULE ${STUDYCPP_INCLUDE_DIR}/function/ModuleTest.cppm)
 
 # 开始循环，按每次两步获取库名和路径
 while(${INDEX} LESS ${LIBRARY_COUNT})
@@ -96,6 +97,7 @@ link_directories(
 ${STUDYCPP_LIB_DIR}/reflectcpp/lib
 )
 
+
 add_executable(${PROJECT_NAME} main.cpp  ${STUDYCPP_SRC_FILES} ${UI_HEADERS} ${QRC_SOURCES})
 
 
@@ -120,7 +122,9 @@ Qt6::Core
 Qt6::Widgets 
 Qt6::Gui 
 reflectcpp
-${LINK_LIBS})
+${LINK_LIBS}
+# myModule
+)
 
 
 # set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)  #设置子项目c++编译版本
