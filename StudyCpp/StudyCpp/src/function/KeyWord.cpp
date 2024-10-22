@@ -21,6 +21,9 @@ constexpr unsigned int addAB(unsigned int a, unsigned int b)
     return a + b;
 }
 
+
+
+
 // 编译器的常量对象
 class myObject
 {
@@ -33,13 +36,14 @@ public:
     {
         return m_a + m_b + m_c;
     }
-    static int a = 0 ;
-    static inline int allid = 0;
+    static int testStatic;   // c++17 之前
+    static inline int allid = 0;   //之后使用inline
 private:
     int m_a, m_b, m_c;
 
     const int m_id;    // const 可以没有定义初始化，在构造时候初始化
 };
+ int myObject::testStatic = 20;
 // 使用
 // constexpr myObject(10,20,30);
 // constexpr int a = myObject.cal_sum();
