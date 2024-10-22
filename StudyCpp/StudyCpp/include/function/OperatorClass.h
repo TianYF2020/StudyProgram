@@ -14,17 +14,43 @@ struct MyStruct
     }
 };
 
+// c++ 20 宇宙飞船运算符
+struct MyTestStruct {
+    float value;
+    float last;
+    std::string name;
+
+    auto operator<=>(const MyTestStruct& other) const {
+        return value <=> other.value;
+    }
+
+
+    // // 重载宇宙飞船运算符 比较1个
+    // auto operator<=>(const MyStruct& other) const {
+    //     if (auto cmp = value <=> other.value; cmp != 0) {
+    //         return cmp; // 首先比较 value
+    //     }
+    //     return last <=> other.last; // 如果 value 相等，则比较 last
+    // }
+};
+
 
 class OperatorClass {
 public:
     int x, y;
 
-    OperatorClass(int x = 0, int y = 0) : x(x), y(y) {}
+    OperatorClass(int x, int y) : x(x), y(y) {}
 
     // 重载加法运算符
     OperatorClass operator+(const OperatorClass& other) {
         return OperatorClass(this->x + other.x, this->y + other.y);
     }
+
+    friend OperatorClass operator+(const OperatorClass& origal,const OperatorClass& other) {
+
+          return OperatorClass(origal.x + other.x, origal.y + other.y);
+    }
+
 
     // 友元函数重载 << 运算符
     friend std::ostream& operator<<(std::ostream& os, const OperatorClass& p) {
@@ -62,7 +88,8 @@ public:
     const int& operator[](int index) const {
         if (index < 0 || index >= 10) {
             std::cerr << "Index out of bounds!" << std::endl;
-            exit(1);
+            // exit(1);
+            throw std::out_of_range("Index out of bounds!");
         }
         return arr[index];  // 返回 const 引用，防止修改
     }

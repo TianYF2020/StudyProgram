@@ -6,6 +6,9 @@ StudyC::StudyC(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this); 
+
+        testOperator();
+
     // TestC();
 
     // TestBarrier();
