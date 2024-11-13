@@ -51,6 +51,94 @@ struct Person {
     };
 };
 
+#include <span>
+// span 
+
+void printSpan(std::span<int> arr)
+{
+    for (auto&& elem : arr) {
+        std::cout << elem << ' ';
+    }
+    std::cout << std::endl;
+}
+
+void testChartSpan()
+{
+    int a[] = {1, 2, 3, 4, 5};
+    std::span<int> mySpan(a);
+    std::cout << mySpan.back() << std::endl;
+    int b = *mySpan.begin();
+
+    std::span<int>::difference_type distance = mySpan.end() - mySpan.begin();
+
+    bool isEmpty = mySpan.empty(); // isEmpty == false
+
+
+    for (auto it = mySpan.begin(); it != mySpan.end(); ++it)
+    {
+        std::cout << *it;
+    }
+
+
+    auto first2 = mySpan.first(2);  // 从前往后
+    auto last2 = mySpan.last(2);   // 后两个值
+    std::cout << "mySpan.first(2): ";  
+    for (auto& i : first2)
+    {
+        std::cout << i;   // 0 1 
+    }
+
+    std::cout << "\nmySpan.first<2>: ";
+    auto viewSpan = mySpan.first<2>();
+    auto lastviewSpan = mySpan.last<2>();
+    for (auto& i : viewSpan)
+    {
+        std::cout << i << " "; // 0 1 
+    }
+     auto front = mySpan.front();
+
+    std::span<int>::iterator it = mySpan.begin();
+    std::cout << *it++ << *it++ << *it;
+
+
+    std::span<int> mySpan1(a);
+    std::span<int> mySpan2;
+    mySpan2 = mySpan1;
+    for (auto &it : mySpan2)
+    {
+        std::cout << it;
+    }
+
+    // 反序输出
+    for (auto rIt = mySpan.rbegin(); rIt != mySpan.rend(); ++rIt)
+    {
+        std::cout << *rIt;
+    }
+
+    // reference
+    std::span<int>::reference ref = mySpan[0];
+    ref = 9;
+    std::cout << mySpan[0];
+
+    std::cout << mySpan.size()  << "字节大小" << mySpan.size_bytes()<< std::endl;
+    
+    // 获取子部分
+    std::cout << "mySpan.subspan(1,2): ";
+    for (auto& i : mySpan.subspan(1,2))
+    {
+        std::cout << i;
+    }
+
+    int x[10] = {};
+    std::span<int, 10> span1{ x }; // fixed-size span: compiler error if size of x doesn't match template argument MAX
+    std::span<int> span2{ x }; // size is inferred from x
+    std::span<const int> span3 = span2; // converting constructor
+    std::span<int> span4( span2 ); 
+
+}
+
+
+
 #include "vector"
 //std::vector: 动态数组，大小可以在运行时根据需要自动扩展，重新分配更大的内存空间（通常是当前容量的两倍）。
 int testVector()

@@ -13,7 +13,7 @@ int testOperator()
     std::cout << p1 << std::endl; // 输出为 (3, 4)
 
 
-    std::vector<MyTestStruct> vec = {{3.5f,"a"}, {1.2f,"b"}, {4.8f,"c"}, {2.0f,"d"}};
+    std::vector<MyTestStruct> vec = {{3.5f,2.0f,"a"}, {1.2f,12.3f,"b"}, {4.8f,0.0f,"c"}, {2.0f,22.0f,"d"}};
     // 使用 std::sort 进行排序
     std::sort(vec.begin(), vec.end());
     // 输出排序结果
