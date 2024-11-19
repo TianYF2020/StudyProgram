@@ -7,7 +7,9 @@ StudyC::StudyC(QWidget *parent)
 {
     ui.setupUi(this); 
 
-        testOperator();
+    TestThreadBlock();
+
+    // testOperator();
 
     // TestC();
 
@@ -44,6 +46,7 @@ StudyC::~StudyC()
 void StudyC::TestC()
 {
  
+
     //多参数输入
     C_TestVarParam temp;
     temp.PrintNumbers(1,2,3,4,6);

@@ -21,3 +21,5 @@ int TestBarrier();
 
 
 int TestCommonThread();
+
+int TestThreadBlock();

@@ -9,7 +9,7 @@
 static std::mutex cv_mutex;
 static std::condition_variable cv;
 
-bool flag = false;
+bool  flag = false;
 
 void myprint(int i);
 void updateflag();
